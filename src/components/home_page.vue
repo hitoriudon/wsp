@@ -54,7 +54,7 @@
                 </v-card>
               </v-list>
               <v-list style="display:inline;" v-for="img in imgs" :key="img.id"><img :src="img.url" width="14%"></v-list>
-              shout out to 잔망루피
+              shout out to 잔망루피!
             </v-col>
           </v-row>
         </v-container>
