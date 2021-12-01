@@ -68,13 +68,13 @@
     data() {
       return {
         imgs:[
-          {url: require("/Users/leesukcheol/Desktop/gitTest/Repo/src/components/imgs/loopy.png")},
-          {url: require("/Users/leesukcheol/Desktop/gitTest/Repo/src/components/imgs/loopy2.png")},
-          {url: require("/Users/leesukcheol/Desktop/gitTest/Repo/src/components/imgs/loopy3.png")},
-          {url: require("/Users/leesukcheol/Desktop/gitTest/Repo/src/components/imgs/loopy4.png")},
-          {url: require("/Users/leesukcheol/Desktop/gitTest/Repo/src/components/imgs/loopy5.png")},
-          {url: require("/Users/leesukcheol/Desktop/gitTest/Repo/src/components/imgs/loopy6.png")},
-          {url: require("/Users/leesukcheol/Desktop/gitTest/Repo/src/components/imgs/loopy7.png")}
+          {url: require("/Users/leesukcheol/Desktop/gitTest/wsp/src/components/imgs/loopy.png")},
+          {url: require("/Users/leesukcheol/Desktop/gitTest/wsp/src/components/imgs/loopy2.png")},
+          {url: require("/Users/leesukcheol/Desktop/gitTest/wsp/src/components/imgs/loopy3.png")},
+          {url: require("/Users/leesukcheol/Desktop/gitTest/wsp/src/components/imgs/loopy4.png")},
+          {url: require("/Users/leesukcheol/Desktop/gitTest/wsp/src/components/imgs/loopy5.png")},
+          {url: require("/Users/leesukcheol/Desktop/gitTest/wsp/src/components/imgs/loopy6.png")},
+          {url: require("/Users/leesukcheol/Desktop/gitTest/wsp/src/components/imgs/loopy7.png")}
         ],
         oTodos: [],
         sTodoTitle: '',
