@@ -11,6 +11,8 @@
             <v-col cols="8" offset="1">
               <v-text-field label="To Do" autofocus v-model="sTodoTitle">
               </v-text-field>
+              <v-text-field label="댓글" v-model="sComment">
+              </v-text-field>
             </v-col>
             <v-col cols="2" my-2>
               <v-btn fab max-height="50px" max-width="50px" color="pink" dark @click="fnSubmitTodo()">
@@ -29,6 +31,8 @@
                     <v-list-item-content>
                       <v-list-item-title :class="{'style_completed' :item.b_completed}"> {{ item.todo_title }}
                       </v-list-item-title>
+                      <v-list-item-title :class="{'style_completed' :item.b_completed}"> {{ item.todo_comment }}
+                      </v-list-item-title>
                       <v-list-item-subtitle class="mt-2">
                         <v-icon class="pointer" @click="fnSetEditTodo(item['.key'])">create</v-icon>
                         <v-icon class="pointer" @click="fnRemoveTodo(item['.key'])">delete</v-icon>
@@ -43,6 +47,7 @@
                     </v-list-item-action>
                     <v-card-text>
                       <v-text-field autofocus clearable v-model="item.todo_title"></v-text-field>
+                      <v-text-field clearable v-model="item.todo_comment"></v-text-field>
                     </v-card-text>
                     <v-card-actions>
                       <v-icon class="pointer" @click="fnSaveEdit(item)">save</v-icon>
@@ -50,6 +55,7 @@
                     </v-card-actions>
                   </v-list-item>
                 </v-card>
+                <!--<li v-for="item in list1">{{item}}</li>-->
               </v-list>
             </v-col>
           </v-row>
@@ -64,23 +70,34 @@
   } from '@/datasources/firebase'
   export default {
     name: 'App',
-    data() {
+    data(
+      
+    ) {
       return {
         oTodos: [],
-        sTodoTitle: ''
+        sTodoTitle: '',
+        sComment:'',
+        oComments:[]
       }
     },
     firebase: {
       oTodos: oTodosinDB
     },
     methods: {
+      fn(c){
+        oComments.push(c)
+        return oComments
+      },
       fnSubmitTodo() {
         oTodosinDB.push({
           todo_title: this.sTodoTitle,
           b_completed: false,
-          b_edit: false
+          b_edit: false,
+          todo_comment: this.sComment
         })
+        list1=fn(this.sComment)
         this.sTodoTitle = ''
+        this.sComment = ''
       },
       fnRemoveTodo(pKey) {
         oTodosinDB.child(pKey).remove()
@@ -99,6 +116,7 @@
         const sKey = pItem['.key']
         oTodosinDB.child(sKey).set({
           todo_title: pItem.todo_title,
+          todo_comment: pItem.todo_comment,
           b_completed: pItem.b_completed,
           b_edit: false
         })
