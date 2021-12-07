@@ -23,4 +23,7 @@ export default {
   .sTitle{
     text-align: center;
   }
+  #app{
+    font-family: 'Hi Melody', cursive;
+  }
 </style>

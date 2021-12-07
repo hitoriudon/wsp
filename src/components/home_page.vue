@@ -2,7 +2,7 @@
     <v-container>
           <v-row my-5>
             <v-col cols="8" offset="1">
-              <v-text-field label="루피가 되려면 어떻게 해야 할까" color="pink lighten-4" autofocus v-model="sTodoTitle">
+              <v-text-field label="추가해주세요" color="pink lighten-4" autofocus v-model="sTodoTitle">
               </v-text-field>
             </v-col>
             <v-col cols="2" my-2>
@@ -14,45 +14,46 @@
           <v-row>
             <v-col cols="12">
               <v-list style="display:inline;" v-for="img in imgs" :key="img.id"><img :src="img.url" width="14%"></v-list>
-              <v-list two-line v-for="item in oTodos" :key="item.key">
-                <v-card flat color="pink lighten-5" v-if="!item.b_edit">
-                  <v-img :src="item.url" v-if="item.url !== ''" contain height="200px"></v-img>
-                  <v-list-item class="py-2">
-                    <v-list-item-action>
-                      <v-checkbox v-model="item.b_completed" disabled='disabled'></v-checkbox>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                      <v-list-item-title :class="{'style_completed' :item.b_completed}"><h2>{{ item.todo_title }}</h2>
-                      </v-list-item-title>
-                      <v-list-item-title :class="{'style_completed_comment' :item.b_completed}"> <br>코멘트:ㅤ{{ item.todo_comment }}
-                      </v-list-item-title>
-                      <v-list-item-subtitle class="mt-2">
-                        <v-icon class="pointer" @click="fnSetEditTodo(item['.key'])">create</v-icon>
-                        &nbsp;modifyㅤㅤㅤ
-                        <v-icon class="pointer" @click="fnRemoveTodo(item['.key'])">delete</v-icon>
-                        &nbsp;deleteㅤㅤㅤ
-                        <v-icon class="pointer" @click="fnAddPhoto(item['.key'])">camera_alt</v-icon>
-                        &nbsp;picture
-                      </v-list-item-subtitle>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-card>
-                <v-card v-else dark>
-                  <v-list-item class="py-2">
-                    <v-list-item-action>
-                      <v-checkbox v-model="item.b_completed" disabled='disabled'></v-checkbox>
-                    </v-list-item-action>
-                    <v-card-text>
-                      <v-text-field autofocus clearable v-model="item.todo_title"></v-text-field>
-                      <v-text-field label="댓글 입력" v-model="item.todo_comment"></v-text-field>
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-icon class="pointer" @click="fnSaveEdit(item)">save</v-icon>
-                      <v-icon class="pointer" @click="fnCancelEdit(item['.key'])">cancel</v-icon>
-                    </v-card-actions>
-                  </v-list-item>
-                </v-card>
-              </v-list>
+                  <transition name="fade" two-line v-for="item in oTodos" :key="item.key">
+                    <v-card flat color="pink lighten-5" v-if="!item.b_edit">
+                      <v-img :src="item.url" v-if="item.url !== ''" contain height="200px"></v-img>
+                        <v-list-item class="py-2">
+                          <v-list-item-action>
+                            <v-checkbox v-model="item.b_completed" disabled='disabled'></v-checkbox>
+                          </v-list-item-action>
+                          <v-list-item-content>
+                            <v-list-item-title :class="{'style_completed' :item.b_completed}"><h2>{{ item.todo_title }}</h2><br>
+                          </v-list-item-title>
+                          <v-list-item-title :class="{'style_completed_comment' :item.b_completed}">코멘트:ㅤ{{ item.todo_comment }}<br><br><br>
+                            </v-list-item-title>
+                          <v-list-item-subtitle class="mt-2">
+                            <v-icon class="pointer" @click="fnSetEditTodo(item['.key'])">create</v-icon>
+                            &nbsp;+commentㅤㅤ
+                            <v-icon class="pointer" @click="fnRemoveTodo(item['.key'])">delete</v-icon>
+                            &nbsp;-deleteㅤㅤ
+                            <v-icon class="pointer" @click="fnAddPhoto(item['.key'])">camera_alt</v-icon>
+                            &nbsp;+picture
+                          </v-list-item-subtitle>
+                        </v-list-item-content>
+                      </v-list-item>
+                    </v-card>
+                    <v-card v-else dark>
+                      <v-list-item class="py-2">
+                        <v-list-item-action>
+                          <v-checkbox v-model="item.b_completed" disabled='disabled'></v-checkbox>
+                        </v-list-item-action>
+                        <v-card-text>
+                          <!--<v-text-field autofocus clearable v-model="item.todo_title"></v-text-field>--원 코드에서 날림--> 
+                          <v-text-field label="comment" v-model="item.todo_comment"></v-text-field>
+                        </v-card-text>
+                        <v-card-actions>
+                          <v-icon class="pointer" @click="fnSaveEdit(item)">save</v-icon>
+                          <v-icon class="pointer" @click="fnCancelEdit(item['.key'])">cancel</v-icon>
+                        </v-card-actions>
+                      </v-list-item>
+                    </v-card>
+                  </transition>
+                <br>
               <v-list style="display:inline;" v-for="img in imgs" :key="img.id"><img :src="img.url" width="14%"></v-list>
               shout out to 잔망루피!
             </v-col>
@@ -64,9 +65,10 @@
     oTodosinDB
   } from '@/datasources/firebase'
   export default {
-    name: 'App',
+    name: 'App', 
     data() {
       return {
+
         imgs:[
           {url: require("/Users/leesukcheol/Desktop/gitTest/wsp/src/components/imgs/loopy.png")},
           {url: require("/Users/leesukcheol/Desktop/gitTest/wsp/src/components/imgs/loopy2.png")},
@@ -102,6 +104,7 @@
       },
       fnRemoveTodo(pKey) {
         oTodosinDB.child(pKey).remove()
+
       },
       fnSetEditTodo(pKey) {
         oTodosinDB.child(pKey).update({
@@ -143,8 +146,14 @@
     text-decoration: underline;
   }
   .style_completed_comment{
-    padding-left: 15px;
-    font-family: 'Yellowtail', cursive;
+
     text-decoration: underline;
+    background-color: white;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
   }
 </style>

@@ -1,9 +1,8 @@
 module.exports = {
-    pwa:{
+    pwa: {
+        workboxPluginMode: 'InjectManifest', 
         workboxOptions: {
-            include: [/^index\.html$/, /\.css$/, /\.js$/,
-            /^manifest\.json$/, /\.png$/],
-            exclude: []
+            swSrc: "src/service-worker.js"
         }
     }
 }
