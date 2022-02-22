@@ -6,7 +6,7 @@
         <video ref="rVideo" class="style_video"></video>
       </v-col>
       <v-col cols="12" class="mt-5 text-center">
-        <p>iOS는 지원하지 않습니다.</p>
+        <p>iOS는 지원하지 않습니다.~~</p>
       </v-col>
     </v-row>
     <div class="text-center my-3">
