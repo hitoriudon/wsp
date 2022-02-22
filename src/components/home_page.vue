@@ -14,7 +14,7 @@
           <v-row>
             <v-col cols="12">
               <v-list style="display:inline;" v-for="img in imgs" :key="img.id"><img :src="img.url" width="14%"></v-list>
-                  <transition name="fade" two-line v-for="item in oTodos" :key="item.key">
+                  <transition name="slide-fade" two-line v-for="item in oTodos" :key="item.key">
                     <v-card flat color="pink lighten-5" v-if="!item.b_edit">
                       <v-img :src="item.url" v-if="item.url !== ''" contain height="200px"></v-img>
                         <v-list-item class="py-2">
@@ -153,7 +153,17 @@
   .fade-enter-active, .fade-leave-active {
     transition: opacity .5s;
   }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+  .slide-fade-enter-active {
+    transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to{
+    transform: translateX(10px);
     opacity: 0;
   }
 </style>
