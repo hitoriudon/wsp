@@ -1,29 +1,6 @@
-# ex08_start
+2021-2 Hanyang Univ.
+Web System Programming 2
+Final Project
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Main language: html+css+javascript
+Framework: Vue.js
